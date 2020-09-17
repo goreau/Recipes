@@ -9,8 +9,9 @@ IMPORTANTE: o arquivo ingredients.json foi alterado:
   . foi deixado o ingrediente Butter com data use-by vencida. Isso faz com que a receita "Ham and Cheese Toastie" nunca seja exibida, pois tem em sua composição o ingrediente vencido;
   . o ingrediente Eggs foi colocado com data best-before vencida, razão pela qual a receita "Fry-up" seja exibida no final da lista;
  O arquivo original foi mantido na pasta Repositorio. Caso queira utiliza-lo, é necessário renomea-lo.
+ TESTES UNITÁRIOS: na pasta tests foi criado um arquivo teste.bat que chama os testes nos métodos das classes Ingredients e Recipes através das classes de teste dessa pasta. Foi utilizada a dependencia PHPUnit para esses testes. Para executar os testes, basta executar esse arquivvo.
  
- 2) Recipes-teste: projeto para teste da api. Esse projeto carrega a lista de ingredientes disponibilizada pela api de forma assíncrona num componente select. Ao ser escolhido um ingrediente da lista, as receitas que o utilizam são exibidas na página. Foi criado ainda um link para a documentação da api, apenas para possibilitar a consulta.
+ 2) Recipes_teste: projeto para teste da api. Esse projeto carrega a lista de ingredientes disponibilizada pela api de forma assíncrona num componente select. Ao ser escolhido um ingrediente da lista, as receitas que o utilizam são exibidas na página. Foi criado ainda um link para a documentação da api, apenas para possibilitar a consulta.
  
  
   
