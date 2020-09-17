@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Ingredients
  *
@@ -19,13 +13,18 @@ class Ingredients {
 	
 	
 	function __construct() {
-		define ('ARQUIVO2', './Repositorio/Ingredients.json');
-
-		$file = file_get_contents(ARQUIVO2);
+		//abre o arquivo com os dados dos ingredientes
+		if (!defined('ARQUIVO2')) define ('ARQUIVO2', __DIR__ .'/Repositorio/Ingredients.json');
+		
+		$file = file_get_contents(ARQUIVO2);//$arquivo);
 		
 		$this->dados = json_decode($file,true);
 	}
 	
+	/*método para verificar as validades dos ingredientes
+	 * Retorna -1 para vencido, 0 para na validade mas best-before expirado
+	 * Retorna 1 para sem vencimentos
+	*/
 	public function validaIngrediente($ingrediente){
 		$array = $this->dados['ingredients'];
 		$idx = array_search($ingrediente, array_column($array, 'title'));
@@ -50,6 +49,7 @@ class Ingredients {
 		}
 	}
 	
+	//retorna a lista dos ingredientes. Pode ser usado para popular um select ou outras exibções
 	public function lista(){
 		$array = $this->dados['ingredients'];
 		return $array;

@@ -1,7 +1,12 @@
 <?php
 
+	/*
+	 * Arquivo que disponibiliza as informações de ingredientes da api
+	 */
+
 	require "vendor/autoload.php";
 	use Classes\Ingredients;
+	
 	$ingredientes = new Ingredients();
 
 	$ret_arr = $ingredientes->lista();

@@ -1,4 +1,8 @@
 <?php
+	/*
+	 * Arquivo que disponibiliza as informações de receitas da api
+	 */
+
 	header("Access-Control-Allow-Origin: *");
 	header("Content-Type: application/json; charset=UTF-8");
 	
@@ -8,7 +12,8 @@
 
 	$teste = new Recipes();
 	
-	
+	//verifica se foi passado o parametro ingrediente, por POST ou GET
+	//se nao foi, retorna nao encontrado
 	if (filter_input(INPUT_POST, 'ingrediente')){
 		$search = filter_input(INPUT_POST, 'ingrediente');
 	} else if (filter_input(INPUT_GET, 'ingrediente')){
@@ -23,6 +28,8 @@
 		return false;
 	}
 	
+	//verifica se usou o parametro tipo: se nao foi assume valor 1
+	
 	if (filter_input(INPUT_POST, 'tipo')){
 		$tipo = filter_input(INPUT_POST, 'tipo');
 	} else if (filter_input(INPUT_GET, 'tipo')){
@@ -34,6 +41,7 @@
 	$teste->listaReceitas($search);
 	$res = array();
 	
+	//se foi solicitado tipo 2, devolve dois arrays (normal e vencimento proximo)
 	if ($tipo==2){
 		$parte = $teste->result;
 		if (count($parte)>0){
@@ -45,6 +53,7 @@
 			array_push($res, array("receitas com ingredientes proximos ao vencimento"=>$parte));
 		}
 	} else {
+		//se nao foi solicitado separaçao de receitas por vencimento, junta os dois arrays num retorno só
 		if (count($teste->result)>0){
 			$parte = $teste->result;
 		} else {
@@ -59,7 +68,7 @@
 		}
 	}
 	
-	
+	//verifica se alguma receita pode ser recomendada para o ingrediente pesquisado
 	if (count($res)>0){	
 		http_response_code(200);
 
